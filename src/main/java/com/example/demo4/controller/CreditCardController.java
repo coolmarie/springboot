@@ -11,6 +11,8 @@ import com.example.demo4.entity.CreditCard;
 import com.example.demo4.service.CreditCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+//import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,19 +20,19 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 //@RequestMapping("/api/cards")
+@CrossOrigin(origins = "https://hggfs7-4200.csb.app")
 public class CreditCardController {
 
     @Autowired
     private CreditCardService service;
-    HttpServletRequest request;
+    //HttpServletRequest request;
 
     // Create a new credit card
     @PostMapping("/api/cards/submit")
-    public Map<String, String> submitCard(@RequestBody CreditCard card) {
+    public Map<String, String> submitCard(@RequestBody CreditCard card,HttpServletRequest request) {
         Map<String, String> response = new HashMap<>();
         service.saveCard(card);
-        response= service.saveCards(card,request);
-        return response; // return the saved card
+        return service.saveCards(card,request);
         //return card;
     }
 
