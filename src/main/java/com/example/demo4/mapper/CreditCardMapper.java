@@ -4,6 +4,8 @@ import com.example.demo4.entity.CreditCard;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface CreditCardMapper {
 
@@ -12,6 +14,6 @@ public interface CreditCardMapper {
     CreditCard selectCardById(@Param("id") Long id);
 
     void deleteCardById(@Param("id") Long id);
-    CreditCard findall();
+    List<CreditCard> findallCreditCards();
 }
 
