@@ -11,10 +11,10 @@ import com.example.demo4.entity.CreditCard;
 import com.example.demo4.service.CreditCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import jakarta.servlet.http.HttpServletRequest;
+
 
 @RestController
 //@RequestMapping("/api/cards")
