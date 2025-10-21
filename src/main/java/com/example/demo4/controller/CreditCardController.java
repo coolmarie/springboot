@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 //import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -28,11 +29,21 @@ public class CreditCardController {
     //HttpServletRequest request;
 
     // Create a new credit card
+    //@PostMapping("/api/cards/submit")
+    //public Map<String, String> submitCard(@RequestBody CreditCard card,HttpServletRequest request) {
+      //  Map<String, String> response = new HashMap<>();
+       // service.saveCard(card);
+        //service.findall();
+        //return service.saveCards(card,request);
+        //return card;
+    //}
+
     @PostMapping("/api/cards/submit")
-    public Map<String, String> submitCard(@RequestBody CreditCard card,HttpServletRequest request) {
+    public List<CreditCard> submitCard(@RequestBody CreditCard card, HttpServletRequest request) {
         Map<String, String> response = new HashMap<>();
         service.saveCard(card);
-        return service.saveCards(card,request);
+        return service.findall();
+        //return service.saveCards(card,request);
         //return card;
     }
 
@@ -43,7 +54,7 @@ public class CreditCardController {
     }
 
     @GetMapping("/api/cards")
-    public CreditCard findall() {
+    public List<CreditCard> findall() {
         return service.findall();
     }
 
