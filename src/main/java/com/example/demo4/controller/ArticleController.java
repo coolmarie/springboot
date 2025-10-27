@@ -6,6 +6,7 @@ import com.example.demo4.service.ArticleService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/articles")
@@ -36,8 +37,8 @@ public class ArticleController {
 
     @PostMapping("/{articleId}/view")
     public Map<String, String> recordView(@PathVariable Long articleId,
-                             @RequestParam("userId") String userId,
-                             @RequestParam("views") int views) {
+                                          @RequestParam("userId") String userId,
+                                          @RequestParam("views") int views) {
         articleService.recordView(articleId, userId, views, articleId);
         return Map.of("message", "User created");
 
@@ -56,3 +57,6 @@ public class ArticleController {
         return articleService.getUser(userId);
     }
 }
+
+
+
