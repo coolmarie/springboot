@@ -1,3 +1,12 @@
+package com.example.demo4.controller;
+
+import com.example.demo4.entity.Article;
+import com.example.demo4.entity.Users;
+import com.example.demo4.service.ArticleService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/articles")
 public class ArticleController {
@@ -32,7 +41,6 @@ public class ArticleController {
         return "View recorded";
     }
 
-    // ✅ Create user with clear endpoint
     @PostMapping("/user")
     public String createUser(@RequestParam String userId) {
         Users user = new Users();
@@ -41,9 +49,11 @@ public class ArticleController {
         return "User created";
     }
 
-    // ✅ Get user with clear endpoint
     @GetMapping("/user/{userId}")
     public Users getUser(@PathVariable String userId) {
         return articleService.getUser(userId);
     }
 }
+
+
+
