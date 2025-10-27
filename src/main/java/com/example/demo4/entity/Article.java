@@ -2,16 +2,16 @@ package com.example.demo4.entity;
 
 public class Article {
 
-    private Long id;           // primary key
-    private String article_id;       // author/owner
+    private Long id;
+    private String articleId;
     private String description;
+
     public Article() {}
 
-    public Article(Long id, String article_id, String description) {
+    public Article(Long id, String articleId, String description) {
         this.id = id;
-        this.article_id= article_id;
+        this.articleId = articleId;
         this.description = description;
-
     }
 
     public Long getId() {
@@ -22,15 +22,13 @@ public class Article {
         this.id = id;
     }
 
-
-    public String getarticleId() {
-        return article_id;
+    public String getArticleId() {
+        return articleId;
     }
 
-    public void setarticleId(String article_id) {
-        this.article_id = article_id;
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
     }
-
 
     public String getDescription() {
         return description;
@@ -39,5 +37,4 @@ public class Article {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }
