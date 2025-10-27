@@ -37,12 +37,12 @@ public class ArticleController {
     }
 
     @PostMapping("/{articleId}/view")
-    public Map<String, String> recordView(@PathVariable Long articleId,
-                                          @RequestParam("userId") String userId,
-                                          @RequestParam("views") int views) {
-        articleService.recordView(articleId, userId, views, articleId);
-        return Map.of("message", "View recorded"); // clearer message
+    public Map<String, Integer> recordView(@PathVariable Long articleId,
+                                           @RequestParam("userId") String userId) {
+        Integer counts= articleService.recordView(articleId, userId);
+        return Map.of("views", counts); // clearer message
     }
+
 
     @PostMapping("/user")
     public Map<String, String> createUser(@RequestParam String userId) {
