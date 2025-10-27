@@ -20,11 +20,11 @@ public interface ArticleMapper {
 
     List<Article> getAllArticles();
 
-    void incrementArticleViews(@Param("articleId") Long articleId);
+    void incrementArticleViews(@Param("articleId") Long articleId,@Param("userId") String userId);
 
     void insertArticleView(ArticleViewDTO dto);
 
-    int countArticleViews(@Param("articleId") Long articleId);
+    int countArticleViews(@Param("articleId") Long articleId,@Param("userId") String userId);
 
     void insertUser(Users user);
 
