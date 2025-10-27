@@ -26,19 +26,20 @@ public class ArticleController {
     }
 
     @PostMapping("/{articleId}/view")
-    public String recordView(@PathVariable Long articleId,
+    public Map<String, String> recordView(@PathVariable Long articleId,
                              @RequestParam("userId") String userId,
                              @RequestParam("views") int views) {
         articleService.recordView(articleId, userId, views, articleId);
-        return "View recorded";
+        return Map.of("message", "User created");
+
     }
 
     @PostMapping("/user")
-    public String createUser(@RequestParam String userId) {
+    public Map<String, String> createUser(@RequestParam String userId) {
         Users user = new Users();
         user.setUserId(userId);
         articleService.createUser(user);
-        return "User created";
+        return Map.of("message", "User created");
     }
 
     @GetMapping("/user/{userId}")
