@@ -1,10 +1,8 @@
 package com.example.demo4.mapper;
 
-
 import com.example.demo4.entity.ArticleViewDTO;
 import com.example.demo4.entity.Users;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import com.example.demo4.entity.Article;
 
 import java.util.List;
@@ -16,21 +14,21 @@ public interface ArticleMapper {
 
     void updateArticle(Article article);
 
-    Article getArticleById(@Param("id") Long id);
+    Article getArticleById(Long id);
 
     List<Article> getAllArticles();
 
-    void incrementArticleViews(@Param("articleId") Long articleId,@Param("userId") String userId);
+    void incrementArticleViews(ArticleViewDTO dto);
 
     void insertArticleView(ArticleViewDTO dto);
 
-    int countArticleViews(@Param("articleId") Long articleId,@Param("userId") String userId);
+    int countArticleViews(ArticleViewDTO dto);
+
+    int getViewsByArticleAndUser(ArticleViewDTO dto);
 
     void insertUser(Users user);
 
-    Users getUserById(@Param("id") Long id);
+    Users getUserById(Long id);
 
-    Users getUserByUserId(@Param("userId") String userId);
-
+    Users getUserByUserId(String userId);
 }
-
