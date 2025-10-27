@@ -1,13 +1,5 @@
-package com.example.demo4.controller;
-
-import com.example.demo4.entity.Article;
-import com.example.demo4.entity.Users;
-import com.example.demo4.service.ArticleService;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 @RestController
+@RequestMapping("/api/articles")
 @CrossOrigin(origins = "https://hggfs7-4200.csb.app")
 public class ArticleController {
 
@@ -17,7 +9,7 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping("/api/articles/{id}")
+    @GetMapping("/{id}")
     public Article getArticle(@PathVariable Long id) {
         return articleService.getArticle(id);
     }
@@ -33,7 +25,7 @@ public class ArticleController {
         return "Article created";
     }
 
-    @PostMapping("/api/articles/{articleId}/view")
+    @PostMapping("/{articleId}/view")
     public String recordView(@PathVariable Long articleId,
                              @RequestParam("userId") String userId,
                              @RequestParam("views") int views) {
@@ -41,7 +33,7 @@ public class ArticleController {
         return "View recorded";
     }
 
-    @PostMapping("/api/articles/user")
+    @PostMapping("/user")
     public String createUser(@RequestParam String userId) {
         Users user = new Users();
         user.setUserId(userId);
@@ -49,11 +41,8 @@ public class ArticleController {
         return "User created";
     }
 
-    @GetMapping("/api/articles/user/{userId}")
+    @GetMapping("/user/{userId}")
     public Users getUser(@PathVariable String userId) {
         return articleService.getUser(userId);
     }
 }
-
-
-
