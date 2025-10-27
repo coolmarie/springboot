@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/articles")
+@CrossOrigin(origins = "https://hggfs7-4200.csb.app")
 public class ArticleController {
 
     private final ArticleService articleService;
@@ -17,7 +17,7 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/articles/{id}")
     public Article getArticle(@PathVariable Long id) {
         return articleService.getArticle(id);
     }
@@ -33,7 +33,7 @@ public class ArticleController {
         return "Article created";
     }
 
-    @PostMapping("/{articleId}/view")
+    @PostMapping("/api/articles/{articleId}/view")
     public String recordView(@PathVariable Long articleId,
                              @RequestParam("userId") String userId,
                              @RequestParam("views") int views) {
@@ -41,7 +41,7 @@ public class ArticleController {
         return "View recorded";
     }
 
-    @PostMapping("/user")
+    @PostMapping("/api/articles/user")
     public String createUser(@RequestParam String userId) {
         Users user = new Users();
         user.setUserId(userId);
@@ -49,7 +49,7 @@ public class ArticleController {
         return "User created";
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/api/articles/user/{userId}")
     public Users getUser(@PathVariable String userId) {
         return articleService.getUser(userId);
     }
