@@ -35,20 +35,22 @@ public class ArticleService {
     }
 
     @Transactional
-    public void recordView(Long id,String userId, int views,Long articleId) {
-        // Insert a new view (will ignore if already exists due to ON DUPLICATE KEY)
+    public Integer recordView(Long articleId, String userId) {
         ArticleViewDTO dto = new ArticleViewDTO();
-        dto.setUserId(userId);
         dto.setArticleId(articleId);
-        dto.setId(id);
-        dto.setviews(views);
-        articleMapper.insertArticleView(dto);
+        dto.setUserId(userId);
+        dto.setviews(1);
 
-        int count = articleMapper.countArticleViews(articleId);
-        if (count == 1) {
-            articleMapper.incrementArticleViews(articleId);
+        int count = articleMapper.countArticleViews(articleId, userId);
+        if (count == 0) {
+            articleMapper.insertArticleView(dto);
+        } else {
+            articleMapper.incrementArticleViews(articleId, userId);
         }
+
+        return articleMapper.countArticleViews(articleId, userId);
     }
+
 
     public Users getUser(String userId) {
         return articleMapper.getUserByUserId(userId);
