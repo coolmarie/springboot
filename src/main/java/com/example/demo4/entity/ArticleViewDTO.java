@@ -27,8 +27,8 @@ public class ArticleViewDTO {
     }
 
 
-    public String setUserId(String userId) {
-        return userId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUserId() {
