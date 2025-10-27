@@ -52,7 +52,7 @@
     </insert>
 
     <select id="getUserByUserId" parameterType="string" resultType="com.example.demo4.entity.Users">
-        SELECT id, user_id
+        SELECT id, user_id AS userId
         FROM users
         WHERE user_id = #{userId}
     </select>
