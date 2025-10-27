@@ -1,3 +1,12 @@
+package com.example.demo4.controller;
+
+import com.example.demo4.entity.Article;
+import com.example.demo4.entity.Users;
+import com.example.demo4.service.ArticleService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/articles")
 @CrossOrigin(origins = "https://hggfs7-4200.csb.app")
