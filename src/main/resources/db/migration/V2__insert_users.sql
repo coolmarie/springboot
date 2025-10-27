@@ -32,3 +32,4 @@ CREATE TABLE "credit_card" (
                                expiry VARCHAR(50),
                                cvv VARCHAR(50)
 );
+

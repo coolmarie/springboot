@@ -16,7 +16,7 @@
         WHERE id = #{id}
     </select>
 
-    <select id="findall" resultType="com.example.demo4.entity.CreditCard">
+    <select id="findallCreditCards" resultType="com.example.demo4.entity.CreditCard">
         SELECT id, card_number AS cardNumber, card_holder AS cardHolder, expiry, cvv
         FROM "credit_card"
     </select>

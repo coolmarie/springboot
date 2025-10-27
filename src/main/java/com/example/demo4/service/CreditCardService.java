@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 import com.example.demo4.entity.CreditCard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -29,8 +30,8 @@ public class CreditCardService {
         mapper.deleteCardById(id);
     }
 
-    public CreditCard findall(){
-        return mapper.findall();
+    public List<CreditCard> findall(){
+        return mapper.findallCreditCards();
     }
 
     public Map<String, String> saveCards(CreditCard card, HttpServletRequest request) {

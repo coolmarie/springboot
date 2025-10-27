@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo4.mapper.AccountMapper">
+    <select id="findAccountById" parameterType="long" resultType="com.example.demo4.entity.Account">
+        SELECT id, owner, balance FROM "account" WHERE id = #{id}
+    </select>
+
+    <select id="findTransactionsByAccountId" parameterType="long" resultType="com.example.demo4.entity.Transaction">
+        SELECT id, account_id AS accountId, amount, type, description, date FROM "transaction" WHERE account_id = #{accountId} ORDER BY account_id DESC
+    </select>
+
+    <select id="findAccounts" parameterType="long" resultType="com.example.demo4.entity.Account">
+        SELECT id, owner, balance FROM "accounts" WHERE owner = #{owner}
+    </select>
+
+    <insert id="insertTransaction" parameterType="com.example.demo4.entity.Transaction" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO "transaction" (account_id, amount, type, description, date)
+        VALUES (#{accountId}, #{amount}, #{type}, #{description}, #{date})
+    </insert>
+    <delete id="deleteAllTransaction" parameterType="long">
+        DELETE FROM "transaction" WHERE account_id= #{account_id}
+    </delete>
+
+    <delete id="deleteTransaction" parameterType="long">
+        DELETE FROM "transaction" WHERE id= #{id}
+    </delete>
+
+
+    <update id="updateAccountBalance">
+        UPDATE "account" SET balance = #{newBalance} WHERE id = #{accountId}
+    </update>
+    <insert id="addAccount" parameterType="com.example.demo4.entity.Account" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO "account" (owner, balance) VALUES (#{owner}, #{balance})
+    </insert>
+
+    <delete id="deleteAccount" parameterType="long">
+        DELETE FROM "account" WHERE id = #{id}
+    </delete>
+</mapper>

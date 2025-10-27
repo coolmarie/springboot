@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo4.mapper.TaskMapper">
+    <select id="findAllTasks" parameterType="long" resultType="com.example.demo4.entity.Task">
+        SELECT id,car_id,description,scheduled_date FROM "task"
+    </select>
+
+    <select id="findTaskById" parameterType="long" resultType="com.example.demo4.entity.Task">
+        SELECT id, car_id, description, scheduled_date FROM "task" WHERE id = #{id} ORDER BY id DESC
+    </select>
+
+
+    <insert id="insertTask" parameterType="com.example.demo4.entity.Task" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO "task" (id, car_id, description, scheduled_date)
+        VALUES (#{id}, #{car_id}, #{description}, #{schedule_date})
+    </insert>
+    <delete id="deleteTask" parameterType="long">
+        DELETE FROM "task" WHERE id= #{id}
+    </delete>
+
+
+    <update id="updateTask">
+        UPDATE "task" SET scheduled_date = #{schedule_date} WHERE id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo4.mapper.ArticleMapper">
+
+    <insert id="insertArticle" parameterType="com.example.demo4.entity.Article" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO article(article_id, description)
+        VALUES (#{userId}, #{description})
+    </insert>
+
+    <update id="updateArticle" parameterType="com.example.demo4.entity.Article">
+        UPDATE article
+        SET description = #{description},
+            article_id = #{article_id}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getArticleById" parameterType="long" resultType="com.example.demo4.entity.Article">
+        SELECT id, article_id, description
+        FROM article
+        WHERE id = #{id}
+    </select>
+
+    <select id="getAllArticles" resultType="com.example.demo4.entity.Article">
+        SELECT id, article_id,description
+        FROM article
+    </select>
+
+    <update id="incrementArticleViews" parameterType="long">
+        UPDATE article_views
+        SET views = views + 1
+        WHERE id = #{articleId}
+    </update>
+
+
+    <insert id="insertArticleView" parameterType="com.example.demo4.entity.ArticleViewDTO">
+        INSERT INTO article_view(id, user_id, article_id)
+        VALUES (#{id}, #{userId}, #{articleId})
+            ON DUPLICATE KEY UPDATE id=id
+    </insert>
+
+    <select id="countArticleViews" parameterType="long" resultType="int">
+        SELECT COUNT(*)
+        FROM article_view
+        WHERE article_id = #{articleId}
+    </select>
+
+
+    <insert id="insertUser" parameterType="com.example.demo4.entity.Users" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users(user_id)
+        VALUES (#{userId})
+    </insert>
+
+    <select id="getUserByUserId" parameterType="string" resultType="com.example.demo4.entity.Users">
+        SELECT id, user_id
+        FROM users
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>

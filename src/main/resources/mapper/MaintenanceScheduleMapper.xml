@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo4.mapper.MaintenanceScheduleMapper">
+    <select id="findAllMaintenanceSchedule" resultType="com.example.demo4.entity.MaintenanceSchedule">
+        SELECT * FROM "maintenance_schedule"
+    </select>
+    <select id="findById" parameterType="long" resultType="com.example.demo4.entity.MaintenanceSchedule">
+        SELECT id, car_id, description, scheduled_date FROM maintenance_schedule WHERE id = #{id}
+    </select>
+    <insert id="insertMaintenance" parameterType="com.example.demo4.entity.MaintenanceSchedule" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO "maintenance_schedule" (car_id, description,schedule_date) VALUES (#{car_id}, #{description},#{schedule_date})
+    </insert>
+
+    <update id="updateMaintenance" parameterType="com.example.demo4.entity.MaintenanceSchedule">
+        UPDATE "maintenance_schedule" SET car_id = #{carId}, description = #{description}, scheduled_date = #{scheduledDate} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteMaintenance" parameterType="long">
+        DELETE FROM "maintenance_schedule" WHERE id = #{id}
+    </delete>
+</mapper>
