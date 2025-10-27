@@ -7,7 +7,7 @@
 
     <insert id="insertArticle" parameterType="com.example.demo4.entity.Article" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO article(article_id, description)
-        VALUES (#{userId}, #{description})
+        VALUES (#{article_id}, #{description})
     </insert>
 
     <update id="updateArticle" parameterType="com.example.demo4.entity.Article">
