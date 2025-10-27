@@ -30,9 +30,10 @@ public class ArticleController {
     }
 
     @PostMapping
-    public String createArticle(@RequestBody Article article) {
+    public Article createArticle(@RequestBody Article article) {
         articleService.createArticle(article);
-        return "Article created";
+        return article;
+
     }
 
     @PostMapping("/{articleId}/view")
@@ -40,8 +41,7 @@ public class ArticleController {
                                           @RequestParam("userId") String userId,
                                           @RequestParam("views") int views) {
         articleService.recordView(articleId, userId, views, articleId);
-        return Map.of("message", "User created");
-
+        return Map.of("message", "View recorded"); // clearer message
     }
 
     @PostMapping("/user")
