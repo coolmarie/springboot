@@ -35,22 +35,26 @@ public class ArticleService {
     }
 
     @Transactional
-    public Integer recordView(Long articleId, String userId) {
+    public int recordView(Long articleId, String userId) {
         ArticleViewDTO dto = new ArticleViewDTO();
         dto.setArticleId(articleId);
         dto.setUserId(userId);
-        dto.setviews(1);
 
-        int count = articleMapper.countArticleViews(articleId, userId);
+        // Check if view exists
+        int count = articleMapper.countArticleViews(dto);
+
         if (count == 0) {
+            // Insert new view record
+            dto.setviews(1);
             articleMapper.insertArticleView(dto);
         } else {
-            articleMapper.incrementArticleViews(articleId, userId);
+            // Increment views
+            articleMapper.incrementArticleViews(dto);
         }
 
-        return articleMapper.countArticleViews(articleId, userId);
+        // Return current views for this user & article
+        return articleMapper.getViewsByArticleAndUser(dto);
     }
-
 
     public Users getUser(String userId) {
         return articleMapper.getUserByUserId(userId);
